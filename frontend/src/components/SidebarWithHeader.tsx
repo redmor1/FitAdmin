@@ -18,6 +18,7 @@ import logo from "../assets/logo.png";
 const SidebarWithHeader = () => {
   const [showSidebar, setShowSidebar] = useState(false);
 
+  // if (isLoaded) {
   return (
     <div>
       <Transition show={showSidebar} as={Fragment}>
@@ -283,7 +284,9 @@ const SidebarWithHeader = () => {
                     <span className="sr-only">Open user menu</span>
                     <img
                       className="h-8 w-8 rounded-full bg-gray-50"
-                      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      src={
+                        "https://lh3.googleusercontent.com/ogw/ANLem4Ymf46WAIQms1-Hu-NcquQT7qnb6eHwJMdO1JLe=s64-c-mo"
+                      }
                       alt=""
                     />
                     <span className="hidden lg:flex lg:items-center">
@@ -313,7 +316,6 @@ const SidebarWithHeader = () => {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
                             className={`${
                               active
                                 ? "block px-3 py-1 text-sm leading-6 text-gray-900 bg-gray-50"
@@ -326,8 +328,7 @@ const SidebarWithHeader = () => {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <button
                             className={`${
                               active
                                 ? "block px-3 py-1 text-sm leading-6 text-gray-900 bg-gray-50"
@@ -335,7 +336,7 @@ const SidebarWithHeader = () => {
                             }`}
                           >
                             Sign out
-                          </a>
+                          </button>
                         )}
                       </Menu.Item>
                     </Menu.Items>
@@ -355,5 +356,6 @@ const SidebarWithHeader = () => {
     </div>
   );
 };
+// };
 
 export default SidebarWithHeader;
