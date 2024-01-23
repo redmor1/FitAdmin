@@ -14,11 +14,16 @@ import {
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import logo from "../assets/logo.png";
+import { useSupabase } from "../hooks/useSupabase";
 
 const SidebarWithHeader = () => {
+  const supabase = useSupabase();
   const [showSidebar, setShowSidebar] = useState(false);
 
-  // if (isLoaded) {
+  const handleSignOut = () => {
+    supabase.signOut();
+  };
+
   return (
     <div>
       <Transition show={showSidebar} as={Fragment}>
@@ -284,9 +289,7 @@ const SidebarWithHeader = () => {
                     <span className="sr-only">Open user menu</span>
                     <img
                       className="h-8 w-8 rounded-full bg-gray-50"
-                      src={
-                        "https://lh3.googleusercontent.com/ogw/ANLem4Ymf46WAIQms1-Hu-NcquQT7qnb6eHwJMdO1JLe=s64-c-mo"
-                      }
+                      src={supabase.session?.user.user_metadata.avatar_url}
                       alt=""
                     />
                     <span className="hidden lg:flex lg:items-center">
@@ -294,7 +297,7 @@ const SidebarWithHeader = () => {
                         className="ml-4 text-sm font-semibold leading-6 text-gray-900"
                         aria-hidden="true"
                       >
-                        John Doe
+                        {supabase.session?.user.user_metadata.full_name}
                       </span>
                       <ChevronDownIcon
                         className="ml-2 h-5 w-5 text-gray-400"
@@ -334,6 +337,9 @@ const SidebarWithHeader = () => {
                                 ? "block px-3 py-1 text-sm leading-6 text-gray-900 bg-gray-50"
                                 : "block px-3 py-1 text-sm leading-6 text-gray-900"
                             }`}
+                            onClick={() => {
+                              handleSignOut();
+                            }}
                           >
                             Sign out
                           </button>
@@ -356,6 +362,5 @@ const SidebarWithHeader = () => {
     </div>
   );
 };
-// };
 
 export default SidebarWithHeader;

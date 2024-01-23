@@ -1,5 +1,5 @@
-import { useUser } from "@clerk/clerk-react";
 import { ReactNode } from "react";
+import { useSupabase } from "../../hooks/useSupabase";
 import { Navigate } from "react-router-dom";
 
 interface RequireAuthProps {
@@ -7,14 +7,19 @@ interface RequireAuthProps {
 }
 
 function RequireAuth({ children }: RequireAuthProps) {
-  const { user } = useUser();
+  const supabase = useSupabase();
+  // console.log(supabase.session?.user.user_metadata.full_name);
+  // console.log(supabase.session);
 
-  if (!user) {
-    // If the user is not signed in, redirect to the sign-in page.
+  // TODO: Loader component
+  if (supabase.isLoading) {
+    return null;
+  }
+
+  if (!supabase.session) {
     return <Navigate to="/" />;
   }
 
-  // If the user is signed in, render the children components.
   return children;
 }
 

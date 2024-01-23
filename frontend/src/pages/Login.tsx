@@ -1,8 +1,19 @@
-import "./Login.css";
 import logo from "../assets/logo.png";
 import loginPhoto from "../assets/login-photo.jpg";
+import { supabase } from "../supabaseClient";
+
+const REDIRECT_URL = `${import.meta.env.VITE_BASE_URL}/app`;
 
 const Login = () => {
+  async function signInWithGoogle() {
+    supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: REDIRECT_URL,
+      },
+    });
+  }
+
   return (
     <div className="flex min-h-full flex-1">
       <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
@@ -108,19 +119,20 @@ const Login = () => {
               </div>
 
               <div className="mt-6 grid grid-cols-2 gap-4">
-                <a
-                  href="#"
+                <button
+                  onClick={() => {
+                    signInWithGoogle();
+                  }}
                   className="flex w-full items-center justify-center gap-3 rounded-md shadow-md px-3 py-1.5 text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
-                    stroke-width="0"
+                    strokeWidth="0"
                     version="1.1"
                     x="0px"
                     y="0px"
                     viewBox="0 0 44 44"
-                    enable-background="new 0 0 48 48"
                     height="1em"
                     width="1em"
                     xmlns="http://www.w3.org/2000/svg"
@@ -150,10 +162,10 @@ const Login = () => {
                   <span className="text-sm font-semibold leading-6">
                     Google
                   </span>
-                </a>
+                </button>
 
-                <a
-                  href="#"
+                <button
+                  onClick={() => {}}
                   className="flex w-full items-center justify-center gap-3 rounded-md px-3 py-1.5 text-gray-900 shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                 >
                   <svg
@@ -171,7 +183,7 @@ const Login = () => {
                   <span className="text-sm font-semibold leading-6">
                     Microsoft
                   </span>
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -183,7 +195,7 @@ const Login = () => {
           src={loginPhoto}
           alt=""
         />
-        <p className="z-10 absolute text-gray-100 font-bold bottom-0 inset-x-0 text-center bg-black bg-opacity-75">
+        <p className="z-10 absolute text-gray-100 bottom-0 inset-x-0 text-center bg-black bg-opacity-75">
           Photo by{" "}
           <a href="https://unsplash.com/@densiq?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
             Dennis Siqueira
