@@ -1,5 +1,5 @@
 import logo from "../assets/logo.png";
-import loginPhoto from "../assets/login-photo.jpg";
+import registerPhoto from "../assets/register-photo.jpg";
 import { supabase } from "../supabaseClient";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -33,6 +33,24 @@ const Register = () => {
 
   return (
     <div className="flex min-h-full flex-1">
+      {" "}
+      <div className="relative hidden w-0 flex-1 lg:block">
+        <img
+          className="absolute inset-0 h-full w-full object-cover"
+          src={registerPhoto}
+          alt=""
+        />
+        <p className="z-10 absolute text-gray-100 bottom-0 inset-x-0 text-center bg-black bg-opacity-75">
+          Photo by{" "}
+          <a href="https://unsplash.com/@densiq?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
+            Dennis Siqueira
+          </a>{" "}
+          on{" "}
+          <a href="https://unsplash.com/photos/white-metal-shelf-with-food-packs-QnMeRW36-zY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
+            Unsplash
+          </a>
+        </p>
+      </div>
       <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div>
@@ -175,23 +193,6 @@ const Register = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="relative hidden w-0 flex-1 lg:block">
-        <img
-          className="absolute inset-0 h-full w-full object-cover"
-          src={loginPhoto}
-          alt=""
-        />
-        <p className="z-10 absolute text-gray-100 bottom-0 inset-x-0 text-center bg-black bg-opacity-75">
-          Photo by{" "}
-          <a href="https://unsplash.com/@densiq?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
-            Dennis Siqueira
-          </a>{" "}
-          on{" "}
-          <a href="https://unsplash.com/photos/white-metal-shelf-with-food-packs-QnMeRW36-zY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
-            Unsplash
-          </a>
-        </p>
       </div>
     </div>
   );
