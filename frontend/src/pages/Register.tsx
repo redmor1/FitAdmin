@@ -1,45 +1,34 @@
 import logo from "../assets/logo.png";
 import loginPhoto from "../assets/login-photo.jpg";
 import { supabase } from "../supabaseClient";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const REDIRECT_URL = `${import.meta.env.VITE_BASE_URL}/app`;
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+
+  async function signUpNewUser() {
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        emailRedirectTo: REDIRECT_URL,
+      },
+    });
+    console.log(error);
+
+    if (error) {
+      console.error("Error signing up:", error.message);
+      return error.message;
+    }
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
-    signInWithEmail();
-  }
-
-  async function signInWithGoogle() {
-    supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: REDIRECT_URL,
-      },
-    });
-  }
-
-  async function signInWithEmail() {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    });
-
-    // If log-in fails
-    if (error) {
-      // Handle the error
-      console.error(error.message);
-      // If log-in is successful
-    } else if (data) {
-      // Redirect the user to a new page
-      navigate("/app");
-    }
+    signUpNewUser();
   }
 
   return (
@@ -49,15 +38,15 @@ const Login = () => {
           <div>
             <img className="h-10 w-auto" src={logo} alt="Your Company" />
             <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Sign in to your account
+              Create an account
             </h2>
             <p className="mt-2 text-sm leading-6 text-gray-500">
-              Not a member?
+              Already have an account?
               <Link
-                to="/register"
+                to="/"
                 className="font-semibold text-blue-600 hover:text-blue-500 ml-1"
               >
-                Create an account
+                Sign in
               </Link>
             </p>
           </div>
@@ -108,32 +97,6 @@ const Login = () => {
                       required
                       className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 px-2"
                     />
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <input
-                      id="remember-me"
-                      name="remember-me"
-                      type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-blue-600"
-                    />
-                    <label
-                      htmlFor="remember-me"
-                      className="ml-3 block text-sm leading-6 text-gray-700"
-                    >
-                      Remember me
-                    </label>
-                  </div>
-
-                  <div className="text-sm leading-6">
-                    <a
-                      href="#"
-                      className="font-semibold text-blue-600 hover:text-blue-500"
-                    >
-                      Forgot password?
-                    </a>
                   </div>
                 </div>
 
@@ -234,4 +197,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
