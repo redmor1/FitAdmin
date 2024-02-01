@@ -3,6 +3,8 @@ import Login from "./pages/Login";
 import { MainLayout } from "./layouts/MainLayout";
 import RequireAuth from "./pages/Auth/RequireAuth";
 import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import Settings from "./pages/Settings";
 
 export const router = createBrowserRouter([
   {
@@ -20,5 +22,15 @@ export const router = createBrowserRouter([
         <MainLayout />
       </RequireAuth>
     ),
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      },
+      {
+        path: "settings",
+        element: <Settings />,
+      },
+    ],
   },
 ]);

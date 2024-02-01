@@ -15,6 +15,7 @@ import {
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import logo from "../assets/logo.png";
 import { useSupabase } from "../hooks/useSupabase";
+import { Outlet } from "react-router-dom";
 
 const SidebarWithHeader = () => {
   const supabase = useSupabase();
@@ -355,7 +356,7 @@ const SidebarWithHeader = () => {
 
         <main className="py-10">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            {/* <!-- Your content --> */}
+            <Outlet />
           </div>
         </main>
       </div>

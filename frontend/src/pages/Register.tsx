@@ -18,7 +18,6 @@ const Register = () => {
         emailRedirectTo: REDIRECT_URL,
       },
     });
-    console.log(error);
 
     if (error) {
       console.error("Error signing up:", error.message);
