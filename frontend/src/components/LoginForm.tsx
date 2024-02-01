@@ -2,12 +2,14 @@ import logo from "../assets/logo.png";
 import { supabase } from "../supabaseClient";
 import { Link, useNavigate } from "react-router-dom";
 import { FormEvent, useState } from "react";
+import ErrorAlert from "./ErrorAlert";
 
 const REDIRECT_URL = `${import.meta.env.VITE_BASE_URL}/app`;
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -33,6 +35,7 @@ const LoginForm = () => {
     // If log-in fails
     if (error) {
       // Handle the error
+      setErrorMessage(error.message);
       console.error(error.message);
       // If log-in is successful
     } else if (data) {
@@ -59,7 +62,8 @@ const LoginForm = () => {
         </p>
       </div>
 
-      <div className="mt-8">
+      <div className={errorMessage ? "mt-4" : "mt-8"}>
+        {errorMessage && <ErrorAlert errorMessage={errorMessage} />}
         <div>
           <form
             onSubmit={(e) => handleSubmit(e)}
