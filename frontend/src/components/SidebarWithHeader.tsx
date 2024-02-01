@@ -15,7 +15,7 @@ import {
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import logo from "../assets/logo.png";
 import { useSupabase } from "../hooks/useSupabase";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const SidebarWithHeader = () => {
   const supabase = useSupabase();
@@ -89,13 +89,13 @@ const SidebarWithHeader = () => {
                       <li>
                         <ul role="list" className="-mx-2 space-y-1">
                           <li>
-                            <a
-                              href="#"
+                            <Link
+                              to="/app"
                               className="bg-gray-50 text-indigo-600 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                             >
                               <HomeIcon className="h-6 w-6 shrink-0 text-indigo-600"></HomeIcon>
                               Dashboard
-                            </a>
+                            </Link>
                           </li>
                           <li>
                             <a
@@ -103,17 +103,17 @@ const SidebarWithHeader = () => {
                               className="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                             >
                               <UsersIcon className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"></UsersIcon>
-                              Team
+                              Sales
                             </a>
                           </li>
                           <li>
-                            <a
-                              href="#"
+                            <Link
+                              to="/app/inventory"
                               className="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                             >
                               <FolderIcon className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"></FolderIcon>
-                              Projects
-                            </a>
+                              Inventory
+                            </Link>
                           </li>
                           <li>
                             <a
@@ -145,13 +145,13 @@ const SidebarWithHeader = () => {
                         </ul>
                       </li>
                       <li className="mt-auto">
-                        <a
-                          href="#"
+                        <Link
+                          to="/app/settings"
                           className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
                         >
                           <Cog6ToothIcon className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"></Cog6ToothIcon>
                           Settings
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </nav>
@@ -176,13 +176,13 @@ const SidebarWithHeader = () => {
                 <ul role="list" className="-mx-2 space-y-1">
                   <li>
                     {/* <!-- Current: "bg-gray-50 text-indigo-600", Default: "text-gray-700 hover:text-indigo-600 hover:bg-gray-50" --> */}
-                    <a
-                      href="#"
+                    <Link
+                      to="/app"
                       className="bg-gray-50 text-indigo-600 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                     >
                       <HomeIcon className="h-6 w-6 shrink-0 text-indigo-600"></HomeIcon>
                       Dashboard
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a
@@ -190,17 +190,17 @@ const SidebarWithHeader = () => {
                       className="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                     >
                       <UsersIcon className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"></UsersIcon>
-                      Team
+                      Sales
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/app/inventory"
                       className="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                     >
                       <FolderIcon className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"></FolderIcon>
-                      Projects
-                    </a>
+                      Inventory
+                    </Link>
                   </li>
                   <li>
                     <a
@@ -232,13 +232,13 @@ const SidebarWithHeader = () => {
                 </ul>
               </li>
               <li className="mt-auto">
-                <a
-                  href="#"
+                <Link
+                  to="/app/settings"
                   className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
                 >
                   <Cog6ToothIcon className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"></Cog6ToothIcon>
                   Settings
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

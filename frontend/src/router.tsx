@@ -5,6 +5,7 @@ import RequireAuth from "./pages/Auth/RequireAuth";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
+import Inventory from "./pages/Inventory";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Dashboard />,
+      },
+      {
+        path: "inventory",
+        element: <Inventory />,
       },
       {
         path: "settings",
